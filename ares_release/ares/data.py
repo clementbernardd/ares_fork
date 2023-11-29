@@ -64,14 +64,6 @@ def prepare(item, k=50, label_to_use='rms'):
     total_sel_atoms = len(sel)
     # Normalize by total number of atoms, not total number of *SELECTED* atoms.
     correction_ratio = total_sel_atoms * 1.0 / total_atoms
-    if correction_ratio < 0.61 or correction_ratio > 0.65:
-        raise RuntimeError(
-            f'There are an unexpected number of unrecognized element types in '
-            f'{item["file_path"]}: '
-            f'{correction_ratio:5.3f} = {total_sel_atoms} / {total_atoms}.  '
-            'Old ARES code expects that you have hydrogens in your structure, '
-            'and only standard RNA bases.  If that is correct, you should see'
-            ' a ratio of ~0.63')
 
     coords = coords[sel]
     elements = elements[sel]
